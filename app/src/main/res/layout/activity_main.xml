@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardElevation="0dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp"
+            tools:context=".activity.ActivityTestPayMoney">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="PayUMoney"
+                android:textSize="18sp"
+                android:textColor="#021373"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/buttonNewMorphism"
+                tools:layout_editor_absoluteX="8dp" />
+            <TextView
+                android:id="@+id/textResponse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Android PayUMoney Sample App"
+                android:textColor="#021373"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:layout_editor_absoluteX="8dp" />
+
+            <Button
+                android:id="@+id/buttonPayNow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="12dp"
+                android:text="Test Pay"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="- By Wackycodes"
+            android:textColor="#242529"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="8dp" />
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

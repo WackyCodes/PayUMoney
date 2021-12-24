@@ -1,0 +1,3 @@
+rootProject.name = "PayUMoney"
+include ':app'
+include ':payulib'
