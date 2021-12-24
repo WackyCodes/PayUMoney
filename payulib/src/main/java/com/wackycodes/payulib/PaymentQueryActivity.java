@@ -8,6 +8,7 @@ import android.util.Log;
 import android.webkit.JsResult;
 import android.webkit.WebView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,7 +29,6 @@ import com.payu.ui.model.listeners.PayUHashGenerationListener;
 
 import java.util.HashMap;
 
-@SuppressWarnings("unchecked")
 public class PaymentQueryActivity extends AppCompatActivity {
 
     public static final String KEY_DATA_MODEL = "KEY_DATA_MODEL";
@@ -223,6 +223,7 @@ public class PaymentQueryActivity extends AppCompatActivity {
     /**
      * Initiate Payment...!
      */
+    @SuppressWarnings("unchecked")
     private void initPayment(PayUPaymentParams payUPaymentParams) {
         PayUCheckoutPro.open(
                 this,
@@ -230,7 +231,7 @@ public class PaymentQueryActivity extends AppCompatActivity {
                 new PayUCheckoutProListener() {
 
                     @Override
-                    public void onPaymentSuccess(Object response) {
+                    public void onPaymentSuccess(@NonNull Object response) {
                         //Cast response object to HashMap
                         HashMap<String, Object> result = (HashMap<String, Object>) response;
                         String payuResponse = (String) result.get(PayUCheckoutProConstants.CP_PAYU_RESPONSE);
@@ -240,7 +241,7 @@ public class PaymentQueryActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onPaymentFailure(Object response) {
+                    public void onPaymentFailure(@NonNull Object response) {
                         //Cast response object to HashMap
                         HashMap<String, Object> result = (HashMap<String, Object>) response;
                         String payuResponse = (String) result.get(PayUCheckoutProConstants.CP_PAYU_RESPONSE);
@@ -256,7 +257,7 @@ public class PaymentQueryActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onError(ErrorResponse errorResponse) {
+                    public void onError(@NonNull ErrorResponse errorResponse) {
                         String errorMessage = errorResponse.getErrorMessage();
                         showLog("Payment Failed ! Error : " + errorMessage);
                         sendResponseData(KEY_RES_CODE_ERROR, "", true, errorMessage);
@@ -280,7 +281,7 @@ public class PaymentQueryActivity extends AppCompatActivity {
 
 
                     @Override
-                    public void generateHash(HashMap<String, String> valueMap, PayUHashGenerationListener hashGenerationListener) {
+                    public void generateHash(@NonNull HashMap<String, String> valueMap, @NonNull PayUHashGenerationListener hashGenerationListener) {
                         String hashName = valueMap.get(PayUCheckoutProConstants.CP_HASH_NAME);
                         String hashData = valueMap.get(PayUCheckoutProConstants.CP_HASH_STRING);
                         if (!TextUtils.isEmpty(hashName) && !TextUtils.isEmpty(hashData)) {
@@ -289,6 +290,7 @@ public class PaymentQueryActivity extends AppCompatActivity {
                             // TODO : Here, hashString contains hash created from your server side.
                             //  calculate SDH-512 hash using hashData and salt
                             String hash = "hashString";
+                            assert hashName != null;
                             if (hashName.equalsIgnoreCase(PayUCheckoutProConstants.CP_LOOKUP_API_HASH)) {
                                 //: Calculate HmacSHA1 hash using the hashData and merchant secret key ....
                                 hash = PayUHashUtil.generateHashFromSDK(
